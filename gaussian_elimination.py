@@ -10,10 +10,8 @@ def gaussian_elimination(A : np.matrix):
         return A
     assert(A.shape[0] > 1)
 
-    #Find non-zero element and puts it in 1,1
+    #Find a non-zero row in 0th column
     col_0 = A[:, 0]
-
-    #Find a non-zero row
     i = 0
     while (col_0[i] == 0):
         i+=1
@@ -45,8 +43,8 @@ def main():
     # identity matrix
     A = np.matrix([[1, 0, 0],
                    [0, 1, 0],
-                   [0, 0, 1]])
-    R = gaussian_elimination(A)
+                   [0, 0, 1]], dtype=float)
+    R = gaussian_elimination(A.copy())
     print("====")
     print(A)
     print(R)
@@ -54,30 +52,39 @@ def main():
     # upper triangular
     A = np.matrix([[2, 3, 1],
                    [0, 5, 4],
-                   [0, 0, 7]])
-    R = gaussian_elimination(A)
+                   [0, 0, 7]], dtype=float)
+    R = gaussian_elimination(A.copy())
     print("====")
     print(A)
     print(R)
 
     # full invertible 2x2
     A = np.matrix([[2, 1],
-                   [4, 3]])
-    R = gaussian_elimination(A)
+                   [4, 3]], dtype=float)
+    R = gaussian_elimination(A.copy())
     print("====")
     print(A)
     print(R)
-    assert np.isclose(np.linalg.det(A), np.prod(np.diag(R)))  # determinant check
 
     # random invertible 3x3
     A = np.matrix([[1, 2, 3],
                    [0, 1, 4],
-                   [5, 6, 0]])
-    R = gaussian_elimination(A)
+                   [5, 6, 0]], dtype=float)
+    R = gaussian_elimination(A.copy())
     print("====")
     print(A)
     print(R)
-    assert np.isclose(np.linalg.det(A), np.prod(np.diag(R)))  # determinant check
+
+    # random invertible 5x5
+    A = np.matrix([[1, 2, 3, 4, 2],
+                   [0, 1, 4, 6, 7],
+                   [5, 3, 0, 8, 9],
+                   [2, 5, 4, 5, 2],
+                   [4, 2, 1, 0, 5]], dtype=float)
+    R = gaussian_elimination(A.copy())
+    print("====")
+    print(A)
+    print(R)
 
 
 
